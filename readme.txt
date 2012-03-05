@@ -1,4 +1,4 @@
-=== Comentario Via E-mail ===
+﻿=== Comentario Via E-mail ===
 Tags: comments, subscription, email, cometários, assiatura, assinar comentários
 Contributors: Gerlis Rocha
 Requires at least: 3.0
@@ -9,7 +9,7 @@ Permite que o usuário inscreva-se e um comentário e recebe atualizações via 
 
 == Description ==
 
-SComentario Via E-mail é um plugin que permite robusto comentadores para se inscrever no e-mail de notificação de comntários. O plugin inclui um gerenciador de Assinatura que seus comentaristas podem ser usados ​​para cancelar a determinados cargos, bloquear todas as notificações, ou até mesmo mudar a sua notificação endereço de e-mail!
+Comentario Via E-mail é um plugin que permite robusto comentadores para se inscrever no e-mail de notificação de comntários. O plugin inclui um gerenciador de Assinatura que seus comentaristas podem ser usados ​​para cancelar a determinados cargos, bloquear todas as notificações, ou até mesmo mudar a sua notificação endereço de e-mail!
 
 == Installation ==
 
