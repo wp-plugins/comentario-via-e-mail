@@ -39,9 +39,9 @@ Tente desmarcar a opção CSS "clear". Além disso, você está no seu próprio 
 
 == Screenshots ==
 
-1. Pagina de inscrição dos usuário de seu site com o check box abaixo do comentário.`../tags/0.0.2/screenshot-1.png`
+1. Pagina de inscrição dos usuário de seu site com o check box abaixo do comentário.
 
-2. Pagina para o entra no gerenciamento das assinatura interface do usuário.`../tags/0.0.2/screenshot-1.png`
+2. Pagina para o entra no gerenciamento das assinatura interface do usuário.
 
 == Changelog ==
 
