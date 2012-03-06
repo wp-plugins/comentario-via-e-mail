@@ -1,5 +1,5 @@
 ﻿=== Comentario Via E-mail ===
-Tags: comments, subscription, email, cometários, assiatura, assinar comentários
+Tags: comments, subscription, email, cometários, assiatura, assinar comentários, Inscrição de Assinatura, responder comentário
 Contributors: Gerlis Rocha
 Requires at least: 3.0
 Tested up to: 3.3.1
@@ -9,7 +9,9 @@ Permite que o usuário inscreva-se e um comentário e recebe atualizações via 
 
 == Description ==
 
-Comentario Via E-mail é um plugin que permite robusto comentadores para se inscrever no e-mail de notificação de comntários. O plugin inclui um gerenciador de Assinatura que seus comentaristas podem ser usados ​​para cancelar a determinados cargos, bloquear todas as notificações, ou até mesmo mudar a sua notificação endereço de e-mail!
+Comentario Via E-mail é um plugin que Permite que os leitores receba notificações de novos comentários que são postados em seus comentários anteriores, entre outras funções. O plugin inclui um gerenciador de Assinatura que seus comentaristas podem ser usados ​​para cancelar a determinados cargos, bloquear todas as notificações, ou até mesmo mudar a sua notificação endereço de e-mail com fácil gerenciamento!
+
+Além de ser interativo, Ele força o usuário e retorna em seu site, almentando assim o número de usuário em seu site.
 
 == Installation ==
 
@@ -34,3 +36,15 @@ Não mais. Mas o status de seleção será lembrado em uma base por usuário.
 = Minha caixa de verificação de assinatura aparece em um lugar estranho. Como faço para corrigir isso? =
 
 Tente desmarcar a opção CSS "clear". Além disso, você está no seu próprio posicionamento com CSS.
+
+== Screenshots ==
+
+1. Pagina de inscrição dos usuário de seu site com o check box abaixo do comentário.`/tags/0.0.2/screenshot-1.png`
+
+2. Pagina para o entra no gerenciamento das assinatura interface do usuário.`/tags/0.0.2/screenshot-2.png`
+
+== Changelog ==
+
+= 0.0.2 =
+* Organização do texto e Melhor entediamento das do e-mails enviados.
+* Atualização das funções e adaptação para nova versão do Wordpress 3.

@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Comentario via e-mail
-Version: 0.0.1
-Plugin URI: http://ideianaweb.com/plugins/
-Description: Permite que os leitores para receber notificações de novos comentários que são postados em seus comentários anteriores, entre outras funções.
+Version: 0.0.2
+Plugin URI: http://www.ideianaweb.com/plugins/
+Description: Permite que os leitores receba notificações de novos comentários que são postados em seus comentários anteriores, entre outras funções. Com painel de controle gerenciavel.
 Author: Gerlis Rocha - Ideia Na Web
-Author URI: http://ideianaweb.com/
+Author URI: http://www.ideianaweb.com/
 */
 
 /* Este é o código que é inserido no formulário de comentário */
@@ -82,7 +82,7 @@ if ( !$sg_subscribe->current_viewer_subscription_status() ) :
 	<input type="hidden" name="ref" value="<?php echo urlencode('http://' . $_SERVER['HTTP_HOST'] . attribute_escape($_SERVER['REQUEST_URI'])); ?>" />
 
 	<p class="solo-subscribe-to-comments">
-	<?php _e('Subscribe without commenting', 'subscribe-to-comments'); ?>
+	<?php _e('Inscrever sem comentar', 'subscribe-to-comments'); ?>
 	<br />
 	<label for="solo-subscribe-email"><?php _e('E-Mail:', 'subscribe-to-comments'); ?>
 	<input type="text" name="email" id="solo-subscribe-email" size="22" value="<?php echo $user_email; ?>" /></label>
@@ -596,14 +596,14 @@ class sg_subscribe {
 
 			$message  = sprintf(__("Existe um novo comentário sobre o posto \"%s\"", 'subscribe-to-comments') . ". \n%s\n\n", $post->post_title, get_permalink($comment->comment_post_ID));
 			$message .= sprintf(__("Autor: %s\n", 'subscribe-to-comments'), $comment->comment_author);
-			$message .= __("Contário:\n", 'subscribe-to-comments') . $comment->comment_content . "\n\n";
+			$message .= __("Cometário:\n", 'subscribe-to-comments') . $comment->comment_content . "\n\n";
 			$message .= __("Ver todos os comentários a este post aqui:\n", 'subscribe-to-comments');
 			$message .= get_permalink($comment->comment_post_ID) . "#comments\n\n";
 			//add link to manage comment notifications
-			$message .= __("To manage your subscriptions or to block all notifications from this site, click the link below:\n", 'subscribe-to-comments');
+			$message .= __("Para gerenciar suas assinaturas ou bloquear todas as notificações a partir deste site, clique no link abaixo:\n", 'subscribe-to-comments');
 			$message .= get_settings('home') . '/?wp-subscription-manager=1&email=[email]&key=[key]';
 
-			$subject = sprintf(__('New Comment On: %s', 'subscribe-to-comments'), $post->post_title);
+			$subject = sprintf(__('Novo Comentário Em: %s', 'subscribe-to-comments'), $post->post_title);
 
 			$subscriptions = $this->subscriptions_from_post($comment->comment_post_ID);
 			foreach ( (array) $subscriptions as $email ) {
@@ -623,10 +623,10 @@ class sg_subscribe {
 			return false;
 
 		$subject = __('E-mail change confirmation', 'subscribe-to-comments');
-		$message = sprintf(__("You are receiving this message to confirm a change of e-mail address for your subscriptions at \"%s\"\n\n", 'subscribe-to-comments'), get_bloginfo('blogname'));
-		$message .= sprintf(__("To change your e-mail address to %s, click this link:\n\n", 'subscribe-to-comments'), $this->new_email);
+		$message = sprintf(__("Você está recebendo esta mensagem para confirmar a mudança de endereço de correio eletronico para as suas assinaturas no \"%s\"\n\n", 'subscribe-to-comments'), get_bloginfo('blogname'));
+		$message .= sprintf(__("Para alterar seu endereço de e-mail para %s, clique neste link:\n\n", 'subscribe-to-comments'), $this->new_email);
 		$message .= get_option('home') . "/?wp-subscription-manager=1&email=" . urlencode($this->email) . "&new_email=" . urlencode($this->new_email) . "&key=" . $this->generate_key($this->email . $this->new_email) . ".\n\n";
-		$message .= __('If you did not request this action, please disregard this message.', 'subscribe-to-comments');
+		$message .= __('Se você não solicitou esta ação, por favor desconsidere esta mensagem.', 'subscribe-to-comments');
 		return $this->send_mail($this->email, $subject, $message);
 	}
 
@@ -634,11 +634,11 @@ class sg_subscribe {
 	function block_email_request($email) {
 		if ( $this->is_blocked($email) )
 			return false;
-		$subject = __('E-mail block confirmation', 'subscribe-to-comments');
-		$message = sprintf(__("You are receiving this message to confirm that you no longer wish to receive e-mail comment notifications from \"%s\"\n\n", 'subscribe-to-comments'), get_bloginfo('name'));
-		$message .= __("To cancel all future notifications for this address, click this link:\n\n", 'subscribe-to-comments');
+		$subject = __('E-mail de confirmação', 'subscribe-to-comments');
+		$message = sprintf(__("Você está recebendo esta mensagem para confirmar que você não deseja mais receber notificações de e-mail de comentário de \"%s\"\n\n", 'subscribe-to-comments'), get_bloginfo('name'));
+		$message .= __("Para cancelar todas as notificações futuras para este endereço, clique neste link:\n\n", 'subscribe-to-comments');
 		$message .= get_option('home') . "/?wp-subscription-manager=1&email=" . urlencode($email) . "&key=" . $this->generate_key($email . 'blockrequest') . "&blockemailconfirm=true" . ".\n\n";
-		$message .= __("If you did not request this action, please disregard this message.", 'subscribe-to-comments');
+		$message .= __("Se você não solicitou esta ação, por favor desconsidere esta mensagem.", 'subscribe-to-comments');
 		return $this->send_mail($email, $subject, $message);
 	}
 
@@ -676,7 +676,7 @@ class sg_subscribe {
 		$postid = (int) $postid;
 		$title = get_the_title($postid);
 		if ( empty($title) )
-			$title = __('click here', 'subscribe-to-comments');
+			$title = __('click Aqui', 'subscribe-to-comments');
 		$output = '<a href="'.$uri.'">'.$title.'</a>';
 		return $output;
 	}
@@ -1149,7 +1149,7 @@ function checkAll(form) {
 </script>
 
 		<fieldset class="options">
-			<legend><?php _e('Subscriptions', 'subscribe-to-comments'); ?></legend>
+			<legend><?php _e('Inscrição', 'subscribe-to-comments'); ?></legend>
 
 				<p>
 				<?php printf(__('<strong>%s</strong> está inscrito para os cargos listados abaixo. Para cancelar a assinatura de um ou mais posts, clique na caixa ao lado do título, em seguida, clique em "Remover Selecionados Assinatura (s)" na parte inferior da lista.', 'subscribe-to-comments'), $sg_subscribe->email); ?>
@@ -1166,7 +1166,7 @@ function checkAll(form) {
 				</ol>
 
 				<p>
-				<a href="javascript:;" onclick="checkAll(document.getElementById('removeSubscription')); return false; "><?php _e('Invert Checkbox Selection', 'subscribe-to-comments'); ?></a>
+				<a href="javascript:;" onclick="checkAll(document.getElementById('removeSubscription')); return false; "><?php _e('Inverter Seleção', 'subscribe-to-comments'); ?></a>
 				</p>
 
 				<p class="submit">
