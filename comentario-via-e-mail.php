@@ -1,12 +1,14 @@
 <?php
 /*
 Plugin Name: Comentario via e-mail
-Version: 0.0.2
+Version: 0.0.3
 Plugin URI: http://www.ideianaweb.com/plugins/
 Description: Permite que os leitores receba notificações de novos comentários que são postados em seus comentários anteriores, entre outras funções. Com painel de controle gerenciavel.
 Author: Gerlis Rocha - Ideia Na Web
 Author URI: http://www.ideianaweb.com/
 */
+
+
 
 /* Este é o código que é inserido no formulário de comentário */
 function show_subscription_checkbox ($id='0') {
@@ -23,7 +25,7 @@ function show_subscription_checkbox ($id='0') {
 <?php /* ------------------------------------------------------------------- */ ?>
 
 	<p <?php if ($sg_subscribe->clear_both) echo 'style="clear: both;" '; ?>class="subscribe-to-comments">
-	<input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;" <?php if ( $checked_status ) echo 'checked="checked" '; ?>/>
+	<input type="checkbox" name="subscribe" id="subscribe" value="subscribe" checked="checked" style="width: auto;" <?php if ( $checked_status ) echo 'checked="checked" '; ?>/>
 	<label for="subscribe"><?php echo $sg_subscribe->not_subscribed_text; ?></label>
 	</p>
 
@@ -698,7 +700,7 @@ class sg_subscribe {
 		global $wpdb;
 
 		// add the options
-		add_option('sg_subscribe_settings', array('use_custom_style' => '', 'email' => get_bloginfo('admin_email'), 'name' => get_bloginfo('name'), 'header' => '[theme_path]/header.php', 'sidebar' => '', 'footer' => '[theme_path]/footer.php', 'before_manager' => '<div id="content" class="widecolumn subscription-manager">', 'after_manager' => '</div>', 'not_subscribed_text' => __('Notifique-me de comentários via e-mail', 'subscribe-to-comments'), 'subscribed_text' => __('You are subscribed to this entry.  <a href="[manager_link]">Manage your subscriptions</a>.', 'subscribe-to-comments'), 'author_text' => __('Você é o autor deste Comentário.  <a href="[manager_link]">Gerenciar inscrição</a>.', 'subscribe-to-comments'), 'version' => $this->version));
+		add_option('sg_subscribe_settings', array('use_custom_style' => '', 'email' => get_bloginfo('admin_email'), 'name' => get_bloginfo('name'), 'header' => '[theme_path]/header.php', 'sidebar' => '', 'footer' => '[theme_path]/footer.php', 'before_manager' => '<div id="content" class="widecolumn subscription-manager">', 'after_manager' => '</div>', 'not_subscribed_text' => __('NoNtifique-me de comentários via e-mail', 'subscribe-to-comments'), 'subscribed_text' => __('Você está inscrito neste Poster.  <a href="[manager_link]">Administrar Inscrição</a>.', 'subscribe-to-comments'), 'author_text' => __('Você é o autor deste Comentário.  <a href="[manager_link]">Gerenciar inscrição</a>.', 'subscribe-to-comments'), 'version' => $this->version));
 
 		$settings = get_option('sg_subscribe_settings');
 		if ( !$settings ) { // work around WP 2.2/2.2.1 bug
@@ -944,23 +946,84 @@ function sg_subscribe_admin($standalone = false) {
 		@include($sg_subscribe->header);
 		echo $sg_subscribe->before_manager;
 	} else { ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        <?php $linkImg = plugins_url('/')."Comentario-via-e-mail/imagens/"; ?>
 	<html>
 	<head>
-	<title><?php printf(__('%s Gerenciamento Comentário e assisntura', 'subscribe-to-comments'), bloginfo('name')); ?></title>
+        
+            <title><?php printf(__('%s Gerenciamento Comentário e assisntura', 'subscribe-to-comments'), bloginfo('name')); ?></title>  
+            <meta http-equiv="Content-Type" content="text/html;charset=<?php bloginfo('charset'); ?>" />
 
-		<style type="text/css" media="screen">
-			@import url( <?php echo get_settings('siteurl'); ?>/wp-admin/wp-admin.css );
-		</style>
+                <?php $sg_subscribe->sg_wp_head(); ?>
 
-		<link rel="stylesheet" type="text/css" media="print" href="<?php echo get_settings('siteurl'); ?>/print.css" />
+            <style type="text/css">
+                body{
+                        background-color:#e4dab8;
+                }
+                fieldset{
+                        background-color:#fff9e7;
 
-		<meta http-equiv="Content-Type" content="text/html;
-	charset=<?php bloginfo('charset'); ?>" />
+                        border-width:2px;
+                        border-style:solid;
+                        border-color:#7c5b47;
 
-	<?php $sg_subscribe->sg_wp_head(); ?>
+                        font-family:Verdana, Arial, Helvetica, sans-serif;
+                        font-size:12px;
 
+                        margin:20px 0px 20px 0px;
+                        width:750px;
+                        position:relative;
+                        display:block;
+                        padding: 0px 10px 10px 10px;
+                }
+
+                fieldset legend{	
+                        background-color:#7c5b47;
+
+                        border-width:1px;
+                        border-style:solid;
+                        border-color:#7c5b47;
+
+                        color:#ffcc99;
+                        font-weight:bold;
+                        font-variant:small-caps;
+                        font-size:110%;
+
+                        padding:2px 5px;
+                        margin:0px 0px 10px 0px;
+                        position:relative;
+                        top: -12px;
+
+                }
+
+                fieldset legend img{
+                        padding:0px 5px 0px 5px;	
+                }
+
+                label{
+                        font-size:80%;
+
+                        display:block;
+                        float:left;
+                        width:100px;
+                        text-align:right;
+                        margin:6px 5px 0px 0px;
+                }
+
+                .button{
+                        background-color:#fff9e7;
+
+                        border-width:1px;
+                        border-style:solid;
+                        border-color:#7c5b47;
+
+                        font-weight:bold;
+                        font-family:Verdana, Arial, Helvetica, sans-serif;
+
+                }
+            </style>
 	</head>
 	<body>
+            
 	<?php } ?>
 	<?php } ?>
 
@@ -971,49 +1034,52 @@ function sg_subscribe_admin($standalone = false) {
 
 
 	<div class="wrap">
-	<h2><?php printf(__('%s Gerenciamento Comentário e assisntura', 'subscribe-to-comments'), bloginfo('name')); ?></h2>
+            <div id="_topo" style="width: 726px; height: 151px; margin: auto">
+                
+            
+                <h3 style="margin-left: 70px"><?php printf(__('%s Gerenciamento Comentário e assisntura', 'subscribe-to-comments'), bloginfo('name')); ?></h3>
 
-	<?php if (!empty($sg_subscribe->ref)) : ?>
-	<?php $sg_subscribe->add_message(sprintf(__('Voltar para a página que você estava visualizando: %s', 'subscribe-to-comments'), $sg_subscribe->entry_link(url_to_postid($sg_subscribe->ref), $sg_subscribe->ref))); ?>
-	<?php $sg_subscribe->show_messages(); ?>
-	<?php endif; ?>
+                <?php if (!empty($sg_subscribe->ref)) : ?>
+                <?php $sg_subscribe->add_message(sprintf(__('Voltar para a página que você estava visualizando: %s', 'subscribe-to-comments'), $sg_subscribe->entry_link(url_to_postid($sg_subscribe->ref), $sg_subscribe->ref))); ?>
+                <?php $sg_subscribe->show_messages(); ?>
+                <?php endif; ?>
 
+            </div>
+            <div style="width: 726px; margin: auto">  
+                <?php if ( $sg_subscribe->is_blocked() ) { ?>
 
+                        <?php if ( current_user_can('manage_options') ) : ?>
 
-	<?php if ( $sg_subscribe->is_blocked() ) { ?>
+                        <fieldset class="options">
+                                <legend><?php _e('Remover Bloco', 'subscribe-to-comments'); ?></legend>
 
-		<?php if ( current_user_can('manage_options') ) : ?>
+                                <p>
+                                <?php printf(__('Clique no botão abaixo para remover o bloco em <strong>%s</strong>.  Isso só deve ser feito se o usuário tiver solicitado especificamente dele.', 'subscribe-to-comments'), $sg_subscribe->email); ?>
+                                </p>
 
-		<fieldset class="options">
-			<legend><?php _e('Remover Bloco', 'subscribe-to-comments'); ?></legend>
+                                <form name="removeBlock" method="post" action="<?php echo $sg_subscribe->form_action; ?>">
+                                <input type="hidden" name="removeBlock" value="removeBlock /">
+                <?php $sg_subscribe->hidden_form_fields(); ?>
 
-			<p>
-			<?php printf(__('Clique no botão abaixo para remover o bloco em <strong>%s</strong>.  Isso só deve ser feito se o usuário tiver solicitado especificamente dele.', 'subscribe-to-comments'), $sg_subscribe->email); ?>
-			</p>
+                                <p class="submit">
+                                <input type="submit" name="submit" value="<?php _e('Remover Bloco &raquo;', 'subscribe-to-comments'); ?>" />
+                                </p>
+                                </form>
+                        </fieldset>
 
-			<form name="removeBlock" method="post" action="<?php echo $sg_subscribe->form_action; ?>">
-			<input type="hidden" name="removeBlock" value="removeBlock /">
-	<?php $sg_subscribe->hidden_form_fields(); ?>
+                <?php else : ?>
 
-			<p class="submit">
-			<input type="submit" name="submit" value="<?php _e('Remover Bloco &raquo;', 'subscribe-to-comments'); ?>" />
-			</p>
-			</form>
-		</fieldset>
+                        <fieldset class="options">
+                                <legend><?php _e('Blocked', 'subscribe-to-comments'); ?></legend>
 
-	<?php else : ?>
+                                <p>
+                                <?php printf(__('Você indicou que você não deseja receber as notificações no <strong>%1$s</strong> a partir deste site. Se isso é incorreto, ou se você deseja ter o bloco removido, por favor contacte o <a href="mailto:%2$s">administrador do site</a>.', 'subscribe-to-comments'), $sg_subscribe->email, $sg_subscribe->site_email); ?>
+                                </p>
+                        </fieldset>
 
-		<fieldset class="options">
-			<legend><?php _e('Blocked', 'subscribe-to-comments'); ?></legend>
+                <?php endif; ?>
 
-			<p>
-			<?php printf(__('Você indicou que você não deseja receber as notificações no <strong>%1$s</strong> a partir deste site. Se isso é incorreto, ou se você deseja ter o bloco removido, por favor contacte o <a href="mailto:%2$s">administrador do site</a>.', 'subscribe-to-comments'), $sg_subscribe->email, $sg_subscribe->site_email); ?>
-			</p>
-		</fieldset>
-
-	<?php endif; ?>
-
-
+            
 	<?php } else { ?>
 
 
@@ -1059,7 +1125,7 @@ function sg_subscribe_admin($standalone = false) {
 <?php if ( !$_REQUEST['email'] ) : ?>
 		<fieldset class="options">
 			<?php if ( !$_REQUEST['showallsubscribers'] ) : ?>
-				<legend><?php _e('Lista Top Assinante', 'subscribe-to-comments'); ?></legend>
+				<legend><?php _e('Lista Top Assinantes', 'subscribe-to-comments'); ?></legend>
 			<?php else : ?>
 				<legend><?php _e('Lista Assinante', 'subscribe-to-comments'); ?></legend>
 			<?php endif; ?>
@@ -1149,7 +1215,7 @@ function checkAll(form) {
 </script>
 
 		<fieldset class="options">
-			<legend><?php _e('Inscrição', 'subscribe-to-comments'); ?></legend>
+			<legend><?php _e('Inscrições', 'subscribe-to-comments'); ?></legend>
 
 				<p>
 				<?php printf(__('<strong>%s</strong> está inscrito para os cargos listados abaixo. Para cancelar a assinatura de um ou mais posts, clique na caixa ao lado do título, em seguida, clique em "Remover Selecionados Assinatura (s)" na parte inferior da lista.', 'subscribe-to-comments'), $sg_subscribe->email); ?>
@@ -1176,7 +1242,7 @@ function checkAll(form) {
 		</fieldset>
 	</div>
 
-	<div class="wrap">
+	<div style="width: 726px; margin: auto">
 	<h2><?php _e('Opções avançadas', 'subscribe-to-comments'); ?></h2>
 
 		<fieldset class="options">
@@ -1221,6 +1287,7 @@ function checkAll(form) {
 			<?php } ?>
 	<?php } //end if not in do not mail ?>
 	</div>
+        
 
 	<?php if ( $sg_subscribe->standalone ) : ?>
 	<?php if ( !$sg_subscribe->use_wp_style ) :
@@ -1232,6 +1299,9 @@ function checkAll(form) {
 		@include_once($sg_subscribe->footer);
 	?>
 	<?php else : ?>
+            </div>
+            <div style="width: 738px; height: 87px; margin: auto"></div>
+            
 	</body>
 	</html>
 	<?php endif; ?>
