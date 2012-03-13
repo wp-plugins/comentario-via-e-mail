@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Comentario via e-mail
-Version: 0.0.3
+Version: 0.0.4
 Plugin URI: http://www.ideianaweb.com/plugins/
 Description: Permite que os leitores receba notificações de novos comentários que são postados em seus comentários anteriores, entre outras funções. Com painel de controle gerenciavel.
 Author: Gerlis Rocha - Ideia Na Web
@@ -1020,6 +1020,27 @@ function sg_subscribe_admin($standalone = false) {
                         font-family:Verdana, Arial, Helvetica, sans-serif;
 
                 }
+                ul{
+                    list-style-type: none;   /*retira os pontos negros da lista*/
+                    padding: 0;
+                    margin: 0;
+                }
+                ol{
+                    list-style-type: none;   /*retira os pontos negros da lista*/
+                    padding: 0;
+                    margin: 0;
+                }
+
+                li{
+                    background-image: url(imagem.gif);   /*Substitui os pontos negros por uma imagem 
+                    à sua escolha*/
+                    background-repeat: no-repeat;
+                    background-position: 0 50%;
+                    padding-left: 12px; /*normalmente isto é o comprimento da imagem de forma a que o texto 
+                    não a sobreponha*/
+                    font: normal .9em Verdana, Helvetica, sans-serif;        /*Tipo de letra*/
+                    color: #000000;                                                /*cor da letra*/
+                }
             </style>
 	</head>
 	<body>
@@ -1225,11 +1246,14 @@ function checkAll(form) {
 				<input type="hidden" name="removesubscrips" value="removesubscrips" />
 	<?php $sg_subscribe->hidden_form_fields(); ?>
 
-				<ol>
+				<ul>
 				<?php for ($i = 0; $i < count($postlist); $i++) { ?>
-					<li><label for="subscrip-<?php echo $i; ?>"><input id="subscrip-<?php echo $i; ?>" type="checkbox" name="subscrips[]" value="<?php echo $postlist[$i]; ?>" /> <?php echo $sg_subscribe->entry_link($postlist[$i]); ?></label></li>
+					<li>
+                                                <input id="subscrip-<?php echo $i; ?>" type="checkbox" name="subscrips[]" value="<?php echo $postlist[$i]; ?>" /> <?php echo $sg_subscribe->entry_link($postlist[$i]); ?>
+         
+                                        </li>
 				<?php } ?>
-				</ol>
+				</ul>
 
 				<p>
 				<a href="javascript:;" onclick="checkAll(document.getElementById('removeSubscription')); return false; "><?php _e('Inverter Seleção', 'subscribe-to-comments'); ?></a>

@@ -1,4 +1,4 @@
-=== Comentario Via E-mail ===
+﻿=== Comentario Via E-mail ===
 Donate link: https://pagseguro.uol.com.br/checkout/doacao.jhtml?email_cobranca=gerlisrocha@msn.com&moeda=BRL
 Tags: comments, subscription, email, cometários, assiatura, assinar comentários, Inscrição de Assinatura, responder comentário, increver-se, rss
 Contributors: Gerlis Rocha
@@ -43,6 +43,9 @@ Tente desmarcar a opção CSS "clear". Além disso, você está no seu próprio 
 2. Pagina para o entra no gerenciamento das assinatura interface do usuário.`/tags/0.0.2/screenshot-2.png`
 
 == Changelog ==
+
+= 0.0.4 =
+* Reorganização da lista de posters mais assinados com aparência mais amigavel.
 
 = 0.0.3 =
 * Melhora a vizualização da parte adimistrativa de assinatura, usuário e adminitrador.
