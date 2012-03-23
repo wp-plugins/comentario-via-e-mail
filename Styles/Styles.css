@@ -1,0 +1,43 @@
+label
+{
+	font: normal 12px/20px Arial, Sans-serif;
+	color: black;
+	vertical-align: middle;
+}
+
+/* common settings checkbox and radiobutton */
+#subscribe
+{
+	-khtml-appearance: none;
+	background: url('RadioAndCheckBoxSprite.gif') no-repeat;
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+        margin-left: 30px
+}
+
+#subscribe
+{
+	background-position-x: left;
+}
+
+#subscribe:hover
+{
+	background-position-y: -40px;
+}
+
+#subscribe:checked
+{
+	background-position-y: -20px;
+}
+
+#subscribe:checked:hover
+{
+	background-position-y: -60px;
+}
+
+/* disabled settings for checkbox and radiobutton */
+#subscribe:disabled
+{
+	opacity: .3;
+}

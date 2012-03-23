@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Comentario via e-mail
-Version: 0.0.5
+Version: 0.0.6
 Plugin URI: http://loja.ideianaweb.com/item.php?pid=43
 Description: Permite que os leitores receba notificações de novos comentários que são postados em seus comentários anteriores, entre outras funções. Com painel de controle gerenciavel.
 Author: Gerlis Rocha - Ideia Na Web
@@ -23,10 +23,15 @@ function show_subscription_checkbox ($id='0') {
 <?php /* ------------------------------------------------------------------- */ ?>
 <?php /* Este é o texto que é exibido para os usuários que não está inscrito */ ?>
 <?php /* ------------------------------------------------------------------- */ ?>
-
+        <link rel="stylesheet" type="text/css" href="<?php echo plugins_url().'/Comentario-via-e-mail/'; ?>Styles/Styles.css"></link>
 	<p <?php if ($sg_subscribe->clear_both) echo 'style="clear: both;" '; ?>class="subscribe-to-comments">
-	<input type="checkbox" name="subscribe" id="subscribe" value="subscribe" checked="checked" style="width: auto;" <?php if ( $checked_status ) echo 'checked="checked" '; ?>/>
-	<label for="subscribe"><?php echo $sg_subscribe->not_subscribed_text; ?></label>
+            <ul>
+                <li>
+                    <input type="checkbox" class="inscricao1" name="subscribe" id="subscribe" value="subscribe" checked="checked"/>
+                    <label for="subscribe"><?php echo $sg_subscribe->not_subscribed_text; ?></label>
+                </li>
+            </ul>
+	
 	</p>
 
 <?php /* ------------------------------------------------------------------- */ ?>
@@ -142,7 +147,6 @@ class sg_subscribe_settings {
 
 		echo '<h2>'.__('Configurações para Comentario via e-mail','subscribe-to-comments').'</h2>';
 		echo '<ul>';
-
 		echo '<li><label for="name">' . __('"Para" nome para notificações:', 'subscribe-to-comments') . ' <input type="text" size="40" id="name" name="sg_subscribe_settings[name]" value="' . sg_subscribe_settings::form_setting('name') . '" /></label></li>';
 		echo '<li><label for="email">' . __('"Para" endereço de email para notificações:', 'subscribe-to-comments') . ' <input type="text" size="40" id="email" name="sg_subscribe_settings[email]" value="' . sg_subscribe_settings::form_setting('email') . '" /></label></li>';
 		echo '<li><label for="clear_both"><input type="checkbox" id="clear_both" name="sg_subscribe_settings[clear_both]" value="clear_both"' . sg_subscribe_settings::checkflag('clear_both') . ' /> ' . __('Faça uma CSS "clear" na caixa de verificação de assinatura / mensagem (desmarque esta opção se a caixa de seleção / mensagem aparece em um local estranho em seu tema)', 'subscribe-to-comments') . '</label></li>';
@@ -700,7 +704,7 @@ class sg_subscribe {
 		global $wpdb;
 
 		// add the options
-		add_option('sg_subscribe_settings', array('use_custom_style' => '', 'email' => get_bloginfo('admin_email'), 'name' => get_bloginfo('name'), 'header' => '[theme_path]/header.php', 'sidebar' => '', 'footer' => '[theme_path]/footer.php', 'before_manager' => '<div id="content" class="widecolumn subscription-manager">', 'after_manager' => '</div>', 'not_subscribed_text' => __('NoNtifique-me de comentários via e-mail', 'subscribe-to-comments'), 'subscribed_text' => __('Você está inscrito neste Poster.  <a href="[manager_link]">Administrar Inscrição</a>.', 'subscribe-to-comments'), 'author_text' => __('Você é o autor deste Comentário.  <a href="[manager_link]">Gerenciar inscrição</a>.', 'subscribe-to-comments'), 'version' => $this->version));
+		add_option('sg_subscribe_settings', array('use_custom_style' => '', 'email' => get_bloginfo('admin_email'), 'name' => get_bloginfo('name'), 'header' => '[theme_path]/header.php', 'sidebar' => '', 'footer' => '[theme_path]/footer.php', 'before_manager' => '<div id="content" class="widecolumn subscription-manager">', 'after_manager' => '</div>', 'not_subscribed_text' => __('Notifique-me de novos comentários via e-mail', 'subscribe-to-comments'), 'subscribed_text' => __('Você está inscrito neste Poster.  <a href="[manager_link]">Administrar Inscrição</a>.', 'subscribe-to-comments'), 'author_text' => __('Você é o autor deste Comentário.  <a href="[manager_link]">Gerenciar inscrição</a>.', 'subscribe-to-comments'), 'version' => $this->version));
 
 		$settings = get_option('sg_subscribe_settings');
 		if ( !$settings ) { // work around WP 2.2/2.2.1 bug

@@ -1,6 +1,6 @@
-=== Comentario Via E-mail ===
+﻿=== Comentario Via E-mail ===
 Donate link: https://pagseguro.uol.com.br/checkout/doacao.jhtml?email_cobranca=gerlisrocha@msn.com&moeda=BRL
-Tags: comments, subscription, email, cometários, assiatura, assinar comentários, Inscrição de Assinatura, responder comentário, increver-se, rss
+Tags: comments, subscription, email, cometários, assiatura, assinar comentários, Inscrição de Assinatura, responder comentário, increver-se, rss,Comentario Via E-mail, Comentario Via Email
 Contributors: Gerlis Rocha
 Requires at least: 3.0
 Tested up to: 3.3.1
@@ -38,11 +38,15 @@ Tente desmarcar a opção CSS "clear". Além disso, você está no seu próprio 
 
 == Screenshots ==
 
-1. Pagina de inscrição dos usuário de seu site com o check box abaixo do comentário.`/tags/0.0.2/screenshot-1.png`
+1. Pagina de inscrição dos usuário de seu site com o check box abaixo do comentário.
 
-2. Pagina para o entra no gerenciamento das assinatura interface do usuário.`/tags/0.0.2/screenshot-2.png`
+2. Pagina para o entra no gerenciamento das assinatura interface do usuário.
 
 == Changelog ==
+
+= 0.0.6 =
+* Novo visual abaixo do comentário, mais eleganete e atraente.
+* Correção de texto da pagina de configurações.
 
 = 0.0.5 =
 * Adaptação de links externos.
