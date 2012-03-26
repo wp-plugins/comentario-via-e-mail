@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Comentario via e-mail
-Version: 0.0.5
+Version: 0.0.6
 Plugin URI: http://loja.ideianaweb.com/item.php?pid=43
 Description: Permite que os leitores receba notificações de novos comentários que são postados em seus comentários anteriores, entre outras funções. Com painel de controle gerenciavel.
 Author: Gerlis Rocha - Ideia Na Web
